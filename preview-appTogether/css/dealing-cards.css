@@ -1,0 +1,86 @@
+
+.cardTable {
+	background-color: green;
+	width: 100%;
+	height: 100%;
+}
+
+.flexContainer {
+	perspective: 10000px;  /* just to avoid any distortions */
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content:space-evenly;
+}
+
+
+.flexItem {
+	width: 190px;
+	height: 300px;
+	transition: transform 1s;
+	transform-style: preserve-3d;
+	padding: 1rem;
+}
+
+.playingCard {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	top: 0;
+	width: 190px;
+	height: 300px;
+	position: absolute;
+	backface-visibility: hidden;
+
+	background-image: url(../img/cards.png);
+	border-radius: 3%;
+}
+
+/* using CSS variabless to positioning with the playing card sprite */
+/* top-offset clove: -135px, spade: -150px, diamonds:  -170px, heart: 190px*/
+.playingCard.front.cardOne {	/* Ace of Hearts */
+	--topOffset:-190px;
+	--cardRow:7;			
+	--cardCol:6;
+}
+.playingCard.front.cardTwo {
+	--topOffset:-190px;
+	--cardRow:7;
+	--cardCol:6;
+}
+.playingCard.front.cardThree {
+	--topOffset:-190px;
+	--cardRow:7;
+	--cardCol:6;
+}
+.playingCard.front.cardFour {
+	--topOffset:-190px;
+	--cardRow:7;
+	--cardCol:6;
+}
+.playingCard.front.cardFive {
+	--topOffset:-190px;
+	--cardRow:7;
+	--cardCol:6;
+}
+
+/* calculate the offset to position the sprite withing the background-image */ 
+.playingCard.front {
+	background-position: top calc(var(--topOffset) - var(--cardRow)*110px - var(--cardRow)*228px) left calc(-165px - var(--cardCol)*110px - var(--cardCol)*162px);
+}
+
+.playingCard.back {
+	background-position: top calc(-135px - 1*110px - 1*228px) left calc(-165px - 6*110px - 6*162px);
+}
+
+.horizontalFlip .playingCard.back {
+	transform: rotateY(180deg);
+}
+/*
+.flexContainer:hover .horizontalFlip {
+	transform: rotateY(180deg);
+}
+*/
+

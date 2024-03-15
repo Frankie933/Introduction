@@ -1,0 +1,186 @@
+/* Define the widths: play around with these to get a best fit. */
+
+:root {
+  --cell-width: 100px;
+  --num-cell-width: 60px;
+  --button-cell-width: 40px;
+  --button-width: 35px;
+}
+
+body {
+  font-size: 20px;
+}
+
+button {
+  width: var(--button-width);
+}
+.tableFluid {
+  padding: 30px;
+  color: black;
+}
+
+.theadFluid .trFluid, .tfootFluid .trFluid {
+  background-color: #FFEEDB;
+  font-weight: bold;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+.tfootFluid .trFluid {
+background-color: lightgreen;
+}
+
+.trFluid {
+  padding: 5px;
+  background-color: darkgray;
+  font-size: 15px;
+}
+
+.trFluid:nth-child(even) {
+  background-color: lightgray;
+}
+
+/* Main container: initialize the flex, direction is row */
+.trFluid {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 0;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+/* Wrappers around cells and other wrappers: flex, row, wrap */
+.trFluid_Grouping2, 
+.trFluid_Grouping1
+{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  flex-grow: 1;
+}
+
+.trFluid_Grouping2.num, 
+.trFluid_Grouping1.num,
+.trFluid_Grouping1.button
+{
+  flex-grow: 0;
+}
+
+.trFluid_Grouping1.button
+{
+  align-items: flex-end;
+}
+
+.tfootFluid .trFluid_Grouping1.button
+{
+  visibility: hidden;       /* not visible but still part of the layout */
+} 
+
+/* Text based cells: grow, truncate and show ellipsis when there is not enough space */
+.tdFluent {
+  display: flex;
+  flex-grow: 1; 
+  justify-content:start;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  padding-right: 20px;
+  width: var(--cell-width);
+}
+
+.tdFluent.num {
+  width: var(--num-cell-width);
+  justify-content:end;
+}
+
+.tdFluent.button {
+  width: var(--button-cell-width);
+  text-overflow:clip;
+  padding-right: 0px;
+  justify-content:end;
+}
+
+
+/* Media queries: optimize for different screen widths. */
+
+/* First breakpoint: all cells, does not fit into one row: break according to Grouping1 */
+@media (max-width: 1200px) {
+
+  /* inner wrappers vertical */
+  .trFluid_Grouping1 {
+    /* Let the wrapper flex vertically, so we get 2 rows */
+    flex-direction: column;
+    width: var(--cell-width);
+  }
+
+  /* can't have the children grow, since this means vertical growth 
+       but let them grow horizontally, 100% to fill the wrapper */
+  .trFluid_Grouping1 div {
+    flex-grow: 0;
+    width: 100%;
+  }
+}
+
+/* Second breakpoint: break according to Grouping2 */
+@media (max-width: 800px) {
+
+  /* inner wrappers vertical */
+  .trFluid_Grouping2 {
+    /* Let the wrapper flex vertically, so we get more rows */
+    flex-direction: column;
+    width: var(--cell-width);
+  }
+
+  /* can't have the children grow, since this means vertical growth 
+       but let them grow horizontally, 100% to fill the wrapper */
+    .trFluid_Grouping2 div {
+    flex-grow: 0;
+    width: 100%;
+  }
+}
+
+/* Final breakpoint: collapse all cells into one single column 
+   break according to trFluid */
+@media (max-width: 600px) {
+
+  /* wrap the main row container */
+  .trFluid {
+    /* Let the wrapper flex vertically, so we get more rows */
+    flex-direction: column;
+  }
+
+  .trFluid div {
+    flex-grow: 0;
+    width: 100%;
+  }
+
+  /* force the num cells to left-align to look better */
+  .tdFluent.num {
+    justify-content:flex-start;
+  }
+}
+
+
+
+
+/* Some borders to show the behaviour. Uncomment to see it in action */
+/*
+.tdFluent {
+  border: 1px solid black;
+  padding: 2px;
+  margin: 2px;
+}
+.trFluid_Grouping1 {
+  border: 1px solid green;
+  padding: 2px;
+  margin: 2px;
+}
+.trFluid_Grouping2 {
+  border: 1px solid red;
+  margin: 2px;
+}
+.trFluid:not(.header){
+  border: 1px solid blue;
+  margin: 2px;
+}
+*/

@@ -1,0 +1,176 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  font-family: Gotham Rounded, sans-serif;
+  font-weight: normal;
+}
+
+.calculator-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  background: lightgrey;
+}
+
+.calculator-grid {
+  display: grid;
+  justify-content: center;
+  align-content: center;
+  grid-template-columns: repeat(4, 100px);
+  grid-template-rows: minmax(120px, auto) repeat(5, 100px);
+  grid-template-areas: 
+    'screen screen screen screen'
+    'clear clear del oper-div'
+    'num-1 num-2 num-3 oper-mul'
+    'num-4 num-5 num-6 oper-add'
+    'num-7 num-8 num-9 oper-sub'
+    'num-dot num-0 equals equals'
+}
+
+.calculator-grid>.science {
+  display: none;
+}
+
+@media (orientation:landscape) {
+
+  .calculator-grid {
+    grid-template-columns: repeat(5, 100px);
+    grid-template-areas: 
+    'screen screen screen screen screen'
+    'clear clear del oper-div oper-op1'
+    'num-1 num-2 num-3 oper-mul oper-op2'
+    'num-4 num-5 num-6 oper-add oper-op3'
+    'num-7 num-8 num-9 oper-sub oper-op4'
+    'num-dot num-0 equals equals equals'
+  }
+}
+
+.calculator-grid>button {
+  cursor: pointer;
+  font-size: 2rem;
+  border: 1px, solid #FFFFFF;
+  border-radius: 10%;
+  outline: none;
+  background-color: rbga(255, 255, 255, 0.75);
+}
+
+.calculator-grid>button:hover {
+  background-color: lightgray;
+}
+
+.wide-button {
+  color: whitesmoke;
+  background-color: orangered
+}
+
+/*position the buttons */
+[data-clear] {
+  grid-area: clear;
+}
+[data-del] {
+  grid-area: del;
+}
+[data-equals] {
+  grid-area: equals;
+}
+
+[data-oper="div"] {
+  grid-area: oper-div;
+}
+[data-oper="add"] {
+  grid-area: oper-add;
+}
+[data-oper="sub"] {
+  grid-area: oper-sub;
+}
+[data-oper="mul"] {
+  grid-area: oper-mul;
+}
+
+[data-num="0"] {
+  grid-area: num-0;
+}
+[data-num="1"] {
+  grid-area: num-1;
+}
+[data-num="2"] {
+  grid-area: num-2;
+}
+[data-num="3"] {
+  grid-area: num-3;
+}
+[data-num="4"] {
+  grid-area: num-4;
+}
+[data-num="5"] {
+  grid-area: num-5;
+}
+[data-num="6"] {
+  grid-area: num-6;
+}
+[data-num="7"] {
+  grid-area: num-7;
+}
+[data-num="8"] {
+  grid-area: num-8;
+}
+[data-num="9"] {
+  grid-area: num-9;
+}
+[data-num="dot"] {
+  grid-area: num-dot;
+}
+
+@media (orientation:landscape) {
+  .calculator-grid>.science {
+    display:inline;
+  }
+  [data-oper="op1"] {
+    grid-area: oper-op1;
+  }
+  [data-oper="op2"] {
+    grid-area: oper-op2;
+  }
+  [data-oper="op3"] {
+    grid-area: oper-op3;
+  }
+  [data-oper="op4"] {
+    grid-area: oper-op4;
+  }
+}
+
+.output {
+  grid-area: screen;
+  background-color: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-around;
+  flex-direction: column;
+  padding: 10px;
+  overflow-wrap: break-word;
+  word-break: break-all;
+}
+
+
+.output .previous-operand {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 1.5rem;
+}
+
+.output .current-operand {
+  color: white;
+  font-size: 2.5rem;
+}
+
+
+/* borders and outlines for debugging */
+/*
+.calculator-container {
+  outline: 2px solid red;
+}
+
+.calculator-grid {
+  outline: 2px solid red;
+}
+*/

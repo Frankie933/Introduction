@@ -1,0 +1,88 @@
+/* Use border-box sizing for simplicity*/
+html,
+body {
+  font-family: 'Oswald', sans-serif;
+	margin: 0;
+	padding: 0;
+  box-sizing: border-box;
+  font-size: 20px;
+}
+
+content-header, content-footer {
+  display: none;
+}
+
+.GridPage {
+  min-height: 100vh;
+  display: grid;
+
+  grid-template-columns: 1fr;
+  grid-template-rows: 50px 60px 1fr 50px;
+
+  grid-template-areas:
+    'header'
+    'side1'
+    'main'
+    'footer';
+}
+
+@media (min-width: 600px) {
+  .GridPage {
+    grid-template-columns: 80px 1fr;
+    grid-template-rows: 50px 1fr 50px;
+
+    grid-template-areas:
+      'header header'
+      'side1 main'
+      'footer footer';
+  }
+}
+
+[class^='GridItem'] {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  color: wheat;
+}
+
+.GridItemHeader {
+  grid-area: header;
+  background-color: steelblue;
+  padding-left: 10px;
+}
+
+.GridItemSideMenu {
+  display: flex;
+  align-items: flex-start;
+  grid-area: side1;
+  background-color:salmon;
+}
+
+.GridItemMain {
+  grid-area: main;
+  background-color: orange;
+  display: flex;
+}
+
+.GridItemFooter {
+  grid-area: footer;
+  background-color: steelblue;
+  padding-left: 10px;
+}
+
+.appAbout {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-left: 10px;
+}
+
+/*  outlines for debugging */
+/*
+[class^='GridItem'] {
+  outline: 3px dashed #f90;
+}
+*/

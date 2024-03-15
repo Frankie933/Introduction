@@ -1,0 +1,56 @@
+[class^='panelMain'] {
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+
+.navLink {
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    color: #ddd;
+    width: 80px;
+    height: 100%;
+    text-decoration: none;
+}
+
+[class^='navLink']:hover {
+    background-color: #236b7f;
+}
+
+.navMenu {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+@media (min-width: 600px) {
+    .navMenu {
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+    [class^='navLink'] {
+        width:100%;
+        height: 50px;
+    }
+}
+
+
+/* borders or outline for debugging, outlines are outside of borders and does not affect layout */
+/* switch on borders */
+/*
+[class^='panelMain'] {
+    outline: 3px dashed black;
+}
+
+.navLink {
+    outline: 3px dashed black;
+}
+.navMenu {
+    outline: 3px dashed black;
+}
+*/

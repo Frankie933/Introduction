@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>appTogether</title>
+  <meta name="viewport" content="width=device-width" />
+  <link rel="stylesheet" href="./css/appTogether.css" />
+  <link rel="stylesheet" href="./css/menu.css" />
+  
+  <link rel="stylesheet" href="./css/student-scores.css" />
+  <link rel="stylesheet" href="./css/form.css" />
+  <link rel="stylesheet" href="./css/modal-window.css" />
+
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon_io/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon_io/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon_io/favicon-16x16.png">
+  <link rel="manifest" href="../favicon_io/site.webmanifest">  
+
+</head>
+
+<body>
+  <content-header>Checkout students scores fetched from a server and presented in a responsive table and editable in a form</content-header>
+  <content-footer>Student scores footer</content-footer>
+  <main class="GridPage">
+    <header class="GridItemHeader">I am content in the Header.</header>
+    <div class="GridItemSideMenu">
+      <nav class="navMenu">
+        <a href="./index.html" class="navLink">Home</a>
+        <a href="./student-scores.html" class="navLink">Student scores</a>
+        <a href="./dealing-cards.html" class="navLink">Dealing cards</a>
+        <a href="./cool-images.html" class="navLink">Cool images</a>
+        <a href="./calculator.html" class="navLink">Calc</a>
+    </nav>
+    </div>
+    <footer class="GridItemFooter">I am content in the Footer.</footer>
+
+    <article class="GridItemMain">
+      <section class="panelMain">
+    <!-- Here is where the normal page should be tagged, in this case the student table -->
+    <div class="tableFluid">
+      <div class="theadFluid">
+        <div class="trFluid">
+          <div class="trFluid_Grouping2">
+            <div class="trFluid_Grouping1">
+              <div class="tdFluent">First Name</div>
+              <div class="tdFluent">Last Name</div>
+            </div>
+            <div class="trFluid_Grouping1">
+              <div class="tdFluent">Email</div>
+              <div class="tdFluent">Birthday</div>
+            </div>
+          </div>
+          <div class="trFluid_Grouping2 num">
+            <div class="trFluid_Grouping1 num">
+              <div class="tdFluent num">Min</div>
+              <div class="tdFluent num">Max</div>
+            </div>
+            <div class="trFluid_Grouping1 num">
+              <div class="tdFluent num">Avg</div>
+              <div class="tdFluent num">Last</div>
+            </div>
+            <div class="trFluid_Grouping1 button">
+              <div class="tdFluent button" style="visibility: hidden;"><button></button></div>
+              <div class="tdFluent button"><button class="addButton">add</button></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tbodyFluid">
+        <!-- Keep these rows first when I debugg the js code to fill the table, so I get the right format and content -->
+        <!-- now, remove them
+        <div class="trFluid">
+          <div class="trFluid_Grouping2">
+            <div class="trFluid_Grouping1">
+              <div class="tdFluent">John</div>
+              <div class="tdFluent">Smith</div>
+            </div>
+            <div class="trFluid_Grouping1">
+              <div class="tdFluent" title="john.smith@gmail.com">john.smith@gmail.com</div>
+              <div class="tdFluent">March 14, 1969</div>
+            </div>
+          </div>
+          <div class="trFluid_Grouping2 num">
+            <div class="trFluid_Grouping1 num">
+              <div class="tdFluent num">1,024</div>
+              <div class="tdFluent num">65,536</div>
+            </div>
+
+            <div class="trFluid_Grouping1 num">
+              <div class="tdFluent num">5,120</div>
+              <div class="tdFluent num">7,680</div>
+            </div>
+            <div class="trFluid_Grouping1 button">
+              <div class="tdFluent button"><button>del</button></div>
+              <div class="tdFluent button"><button>edit</button></div>
+            </div>
+          </div>
+        </div>
+        -->
+      </div>
+
+      <div class="tfootFluid">
+        <!--
+        <div class="trFluid">
+          <div class="trFluid_Grouping2">
+            <div class="trFluid_Grouping1">
+              <div class="tdFluent"></div>
+              <div class="tdFluent"></div>
+            </div>
+            <div class="trFluid_Grouping1">
+              <div class="tdFluent"></div>
+              <div class="tdFluent"></div>
+            </div>
+          </div>
+          <div class="trFluid_Grouping2 num">
+            <div class="trFluid_Grouping1 num">
+              <div class="tdFluent num">Min val</div>
+              <div class="tdFluent num">Max val</div>
+            </div>
+            <div class="trFluid_Grouping1 num">
+              <div class="tdFluent num">Avg</div>
+              <div class="tdFluent num">Avg</div>
+            </div>
+             
+         <div class="trFluid_Grouping1 button">
+          <div class="tdFluent button"><button>del</button></div>
+          <div class="tdFluent button"><button>edit</button></div>
+        </div>
+        -->
+      </div>
+
+    </div>
+
+    <!-- Here is where the modal windows should be tagged -->
+    <div class="pageContentInModal">
+       <div id="modal1" class="windowModal">
+        <div class="windowModalHeader">
+          <h2>Student scores</h2>
+          <span class="btnCloseModal">&times;</span>
+        </div>
+        <div class="windowModalContent">
+          <form class="formContainer" id="studentScores">
+            <div class="formIntroContainer">
+              <b>Note: an asterisk (*) indicates a required field</b>
+            </div>
+            <fieldset>
+              <legend>Student details <span>(1 of 2)</span></legend>
+
+              <div class="formInputContainer">
+                <input id="studentName" name="studentName" pattern="^([\D]{2,30}\s+)+([a-zA-Z]{2,30})$"
+                  placeholder="John Smith" required />
+                <label for="studentName">Name:</label>
+              </div>
+              <div class="formInputContainer">
+                <input id="studentBirthDate" type="date" name="studentBirthDate" required />
+                <label for="studentBirthDate">Birthdate:</label>
+              </div>
+              <div class="formInputContainer">
+                <input id="studentEmail" name="studentEmail" type="email" placeholder="john.smith@gmail.com" required />
+                <label for="studentEmail">Email address:</label>
+              </div>
+            </fieldset>
+            <fieldset>
+              <legend>Exam scores <span>(2 of 2)</span></legend>
+              <div class="formInputContainer">
+                <input id="studentScoreMin" name="studentScoreMin" type="number" min="0" max="100" required />
+                <label for="studentScoreMin">Minimum score:</label>
+              </div>
+              <div class="formInputContainer">
+                <input id="studentScoreMax" name="studentScoreMax" type="number" min="0" max="100" required />
+                <label for="studentScoreMax">Maximum score:</label>
+              </div>
+              <div class="formInputContainer">
+                <input id="studentScoreAvg" name="studentScoreAvg" type="number" min="0" max="100" required />
+                <label for="studentScoreAvg">Average score:</label>
+              </div>
+              <div class="formInputContainer">
+                <input id="studentScoreLast" name="studentScoreLast" type="number" min="0" max="100" required />
+                <label for="studentScoreLast">Last score:</label>
+              </div>
+            </fieldset>
+
+            <button class="form-Submit_Btn" type="submit" value="Submit Redemption">
+              <span class="flipper">
+                <span class="flipper-object flipper-vertical">
+                  <span class="panel front">Ready?</span>
+                  <span class="panel back">Submit</span>
+                </span>
+              </span>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+      </section>
+    </article>
+  </main>
+
+  <script src="./script/appTogether.js"></script>
+  <script type="module" src="./script/student-scores.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,99 @@
+.pageContent {
+    width: 100vw;
+    height: 100vh;
+}
+
+#modal1, #modal2 {
+    display: none;   
+}
+
+.pageContentInModal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.windowModal {
+    position: relative;
+    left: 10%;         
+    top: 10%;           
+    width: 75%;
+    height: 80vh;       
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    z-index: 2;
+    animation-name: showModal;
+    animation-duration: 1s;
+/*    overflow-y: scroll;   */
+
+}
+
+.windowModalHeader {
+    display: flex;
+    flex-direction: row;
+    flex: 0 0 40px;
+    justify-content: center;
+    color: black;
+}
+
+.windowModalHeader h2 {
+    display: flex;
+    flex: 1 1 auto;
+    /* grow into available pace of the ModalHeader flex */
+    justify-content: center;
+}
+
+.windowModalContent {
+    height: 70%;
+    overflow-y: scroll;   
+    z-index: 2;
+    padding: 20px;
+    flex: 1 1 auto;
+}
+
+.windowModalHeader .btnCloseModal {
+    color: lightgray;
+    font-size: 24px;
+    font-weight: bold;
+    padding-right: 0.5rem;;
+}
+
+.windowModalHeader .btnCloseModal:hover {
+    cursor: pointer;
+    color: darkgray;
+}
+
+@keyframes showModal {
+    from {
+        top: -300px;
+        opacity: 0
+    }
+
+    to {
+        top: 10%;
+        opacity: 1
+    }
+}
+
+
+/* outlines and borders for debugging */
+/*
+.windowModalContent {
+    border: 3px solid black;
+}
+
+.pageContent,
+.pageContentInModal,
+.windowModal,
+.windowModalHeader,
+.close-btn {
+    border: 3px solid black;
+}
+*/
